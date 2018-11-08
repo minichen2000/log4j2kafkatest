@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="1800">
+
+    <Filter type="ThresholdFilter" level="trace" />
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <ThresholdFilter level="trace" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+        </Console>
+
+        <Kafka name="Kafka" topic="my-topic" syncSend="false">
+            <PatternLayout pattern="%date %message" />
+            <Property name="bootstrap.servers">135.251.96.182:9092,135.251.96.183:9092,135.251.96.184:9092</Property>
+        </Kafka>
+    </Appenders>
+    <Loggers>
+        <Root level="WARN">
+            <!-- TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+            <AppenderRef ref="console" />
+        </Root>
+        <Logger name="kafkaLog" level="trace">
+            <!-- <AppenderRef ref="console" />-->
+            <AppenderRef ref="Kafka" />
+        </Logger>
+    </Loggers>
+</Configuration>
