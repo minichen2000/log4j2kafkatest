@@ -91,11 +91,7 @@ fabric.properties
 .idea/httpRequests
 
 /*.iml
-/.idea/
-.idea/compiler.xml
-.idea/misc.xml
-.idea/vcs.xml
-log4j2.xml
+/.idea
 log4j2kafkatest.iml
-pom.xml
-src/
+
+
